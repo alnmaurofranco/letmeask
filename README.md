@@ -50,8 +50,5 @@ E pronto a aplicação estára rodando e pode ser acessada em [`localhost:3000`]
 A seguir um to-do com possiveis desafios para serem realizados nesse projeto.
 
 - [ ]
-- [ ]
-- [ ]
-- [ ]
 
 ---
