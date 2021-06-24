@@ -1,13 +1,35 @@
+import { FormEvent, useState } from 'react';
 import Link from 'next/link'
 import Head from 'next/head'
 
 import styles from '../../styles/auth.module.scss'
 import { Button } from '../../components/Button';
+import { database } from '../../services/firebase';
 
 import { useAuth } from '../../hooks/useAuth';
+import { useRouter } from 'next/router';
 
 export default function NewRoom() {
+  const router = useRouter()
   const { user } = useAuth()
+  const [newRoom, setNewRoom] = useState('')
+
+  async function handleCreateRoom(event: FormEvent) {
+    event.preventDefault()
+
+    if (newRoom.trim() === '') {
+      return
+    }
+
+    const roomRef = database.ref('rooms')
+
+    const firebaseRoom = await roomRef.push({
+      title: newRoom,
+      authorId: user?.id
+    })
+
+    router.push(`/rooms/${firebaseRoom.key}`)
+  }
 
   return (
     <div className={styles.page_auth}>
@@ -32,12 +54,14 @@ export default function NewRoom() {
         <div className={styles.mainContent}>
           <img src="/assets/images/logo.svg" alt="LetMeAsk" />
           <h2>Criar uma nova sala</h2>
-          <form>
+          <form onSubmit={handleCreateRoom}>
             <input
               type="text"
-              name="roomName"
-              id="roomName"
+              name="newRoom"
+              id="newRoom"
               placeholder="Nome da sala"
+              onChange={event => setNewRoom(event.target.value)}
+              value={newRoom}
             />
             <Button type="submit">Criar sala</Button>
           </form>
