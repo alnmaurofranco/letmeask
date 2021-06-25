@@ -58,7 +58,8 @@ export function useRoom(roomId: string) {
             isHighlighted: value.isHighlighted,
             likeCount: Object.values(value.likes ?? {}).length,
             likeId: Object.entries(value.likes ?? {}).find(
-              ([key, like]: any) => like.authorId === user?.id
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ([, like]: any) => like.authorId === user?.id
             )?.[0]
           }
         })
