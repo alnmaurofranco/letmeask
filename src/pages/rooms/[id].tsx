@@ -17,12 +17,16 @@ type TRoomQuery = {
 }
 
 export default function Room() {
-  const { user } = useAuth()
+  const { user, signInWithGoogle } = useAuth()
   const router = useRouter()
   const [newQuestion, setNewQuestion] = useState('')
   const { id: roomId } = router.query as TRoomQuery
 
   const { questions, title } = useRoom(roomId)
+
+  async function handleLoginWithQuestion() {
+    await signInWithGoogle()
+  }
 
   async function handleSendQuestion(e: FormEvent) {
     e.preventDefault()
@@ -94,7 +98,7 @@ export default function Room() {
                 <span>{user.name}</span>
               </div>
             ) : (
-              <span>Para enviar uma pergunta, <button>faça seu login</button>.</span>
+              <span>Para enviar uma pergunta, <button onClick={handleLoginWithQuestion}>faça seu login</button>.</span>
             )}
 
             <Button type="submit" disabled={!user}>Enviar pergunta</Button>
