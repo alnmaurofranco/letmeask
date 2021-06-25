@@ -59,22 +59,30 @@ export default function Home() {
       <main>
         <div className={styles.mainContent}>
           <img src="/assets/images/logo.svg" alt="LetMeAsk" />
-          <button onClick={handleCreateRoom} className={styles.createRoom}>
-            <img src="/assets/images/google-icon.svg" alt="Logo do google" />
-            Crie sua sala com o Google
-          </button>
-          <div className={styles.separator}>ou entre em uma sala</div>
-          <form onSubmit={handleJoinRoom}>
-            <input
-              type="text"
-              name="roomName"
-              id="roomName"
-              placeholder="Digite o código da sala"
-              onChange={event => setRoomCode(event.target.value)}
-              value={roomCode}
-            />
-            <Button type="submit">Entrar na sala</Button>
-          </form>
+          {!user ? (
+            <>
+              <button onClick={handleCreateRoom} className={styles.createRoom}>
+                <img src="/assets/images/google-icon.svg" alt="Logo do google" />
+                Crie sua sala com o Google
+              </button>
+              <div className={styles.separator}>ou entre em uma sala</div>
+            </>
+          ) : (
+            <>
+              <br />
+              <form onSubmit={handleJoinRoom}>
+                <input
+                  type="text"
+                  name="roomName"
+                  id="roomName"
+                  placeholder="Digite o código da sala"
+                  onChange={event => setRoomCode(event.target.value)}
+                  value={roomCode}
+                />
+                <Button type="submit">Entrar na sala</Button>
+              </form>
+            </>
+          )}
         </div>
       </main>
     </div>

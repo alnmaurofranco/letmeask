@@ -6,7 +6,9 @@ type RoomCodeProps = {
 
 export function RoomCode(props: RoomCodeProps) {
   function roomCodeToClipboard() {
-    navigator.clipboard.writeText(props.code)
+    navigator.clipboard.writeText(`${window.location.origin}/rooms/${props.code}`)
+      .then(() => console.log('Copiado com sucesso!'),
+        (error) => console.error('Falha ao copiar: ', error));
   }
 
   return (
