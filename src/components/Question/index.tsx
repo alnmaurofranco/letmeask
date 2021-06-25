@@ -8,11 +8,23 @@ type TQuestionProps = {
     avatar: string;
   }
   children?: ReactNode;
+  isAnswered?: boolean;
+  isHighlighted?: boolean;
 }
 
-export function Question({ content, author, children }: TQuestionProps) {
+export function Question({
+  content,
+  author,
+  isAnswered = false,
+  isHighlighted = false,
+  children
+}: TQuestionProps) {
   return (
-    <div className={styles.question}>
+    <div
+      className={`
+      ${styles.question}
+      ${isHighlighted && !isAnswered ? styles.highlighted : isAnswered ? styles.answered : ''}`}
+    >
       <p>{content}</p>
       <footer>
         <div className={styles.userInfo}>

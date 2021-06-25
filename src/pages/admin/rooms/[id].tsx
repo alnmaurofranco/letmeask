@@ -32,6 +32,18 @@ export default function AdminRoom() {
     }
   }
 
+  async function handleCheckQuestionAsAnswered(questionId: string) {
+    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+      isAnswered: true,
+    })
+  }
+
+  async function handleHighlightQuestion(questionId: string) {
+    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+      isHighlighted: true,
+    })
+  }
+
   return (
     <div className={styles.page_room}>
       <Head>
@@ -68,7 +80,27 @@ export default function AdminRoom() {
                 key={question.id}
                 content={question.content}
                 author={question.author}
+                isAnswered={question.isAnswered}
+                isHighlighted={question.isHighlighted}
               >
+                {!question.isAnswered && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => handleCheckQuestionAsAnswered(question.id)}
+                    >
+                      <img src="/assets/images/check.svg" alt="Marcar pergunta como respondida" />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleHighlightQuestion(question.id)}
+                    >
+                      <img src="/assets/images/answer.svg" alt="Dar destaque á pergunta" />
+                    </button>
+                  </>
+                )}
+
                 <button
                   type="button"
                   onClick={() => handleDeleteQuestion(question.id)}
