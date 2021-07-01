@@ -47,8 +47,9 @@ E pronto a aplicação estára rodando e pode ser acessada em [`localhost:3000`]
 
 ## 🌟 Desafios
 
-A seguir um to-do com possiveis desafios para serem realizados nesse projeto.
+A seguir um to-do com os desafios para serem realizados nesse projeto.
 
-- [ ]
+- [ ] PWA
+- [ ] Responsividade
 
 ---
