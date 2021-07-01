@@ -1,4 +1,5 @@
 import styles from './roomCode.module.scss'
+import { toast } from 'react-hot-toast';
 
 type RoomCodeProps = {
   code: string;
@@ -6,9 +7,21 @@ type RoomCodeProps = {
 
 export function RoomCode(props: RoomCodeProps) {
   function roomCodeToClipboard() {
-    navigator.clipboard.writeText(`${window.location.origin}/rooms/${props.code}`)
-      .then(() => console.log('Copiado com sucesso!'),
-        (error) => console.error('Falha ao copiar: ', error));
+    toast.promise(navigator.clipboard.writeText(`${window.location.origin}/rooms/${props.code}`), {
+      loading: 'Carregando...',
+      success: 'Copiado com sucesso!',
+      error: 'Não foi possivel copiar.'
+    }, {
+      duration: 950,
+      style: {
+        height: '50px',
+        borderRadius: 8,
+        background: '#835afd',
+        padding: '0 32px',
+        color: '#fff',
+        fontWeight: 500
+      }
+    })
   }
 
   return (

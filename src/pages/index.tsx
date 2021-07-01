@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../hooks/useAuth';
 import { FormEvent, useState } from 'react';
 import { database } from '../services/firebase';
+import { toast } from 'react-hot-toast'
 
 export default function Home() {
   const router = useRouter();
@@ -22,19 +23,55 @@ export default function Home() {
   async function handleJoinRoom(event: FormEvent) {
     event.preventDefault()
 
-    const roomRef = await database.ref(`rooms/${roomCode}`).get()
+    // if (roomCode === '') {
+    //   alert('')
+    //   return
+    // }
 
-    if (!roomRef.exists()) {
-      alert('Room does not exists')
-      return
+    try {
+      const roomRef = await database.ref(`rooms/${roomCode}`).get()
+
+      if (!roomRef.exists()) {
+        toast('Sala não existe', {
+          style: {
+            height: '50px',
+            borderRadius: 8,
+            background: '#835afd',
+            padding: '0 32px',
+            color: '#fff',
+            fontWeight: 500
+          }
+        })
+        return
+      }
+
+      if (roomRef.val().endedAt) {
+        toast('Sala está fechada!', {
+          style: {
+            height: '50px',
+            borderRadius: 8,
+            background: '#835afd',
+            padding: '0 32px',
+            color: '#fff',
+            fontWeight: 500
+          }
+        })
+        return
+      }
+
+      router.push(`/rooms/${roomCode}`)
+    } catch (error) {
+      toast.error('Erro', {
+        style: {
+          height: '50px',
+          borderRadius: 8,
+          background: '#835afd',
+          padding: '0 32px',
+          color: '#fff',
+          fontWeight: 500
+        }
+      })
     }
-
-    if (roomRef.val().endedAt) {
-      alert('Room already closed.')
-      return
-    }
-
-    router.push(`/rooms/${roomCode}`)
   }
 
   return (
@@ -90,7 +127,10 @@ export default function Home() {
                   onChange={event => setRoomCode(event.target.value)}
                   value={roomCode}
                 />
-                <Button type="submit">Entrar na sala</Button>
+                <Button
+                  type="submit"
+                  disabled={false}
+                >Entrar na sala</Button>
               </form>
             </>
           )}
