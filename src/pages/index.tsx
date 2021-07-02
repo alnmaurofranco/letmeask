@@ -6,6 +6,7 @@ import { useAuth } from '../hooks/useAuth';
 import { FormEvent, useState } from 'react';
 import { database } from '../services/firebase';
 import { toast } from 'react-hot-toast'
+import Link from 'next/link';
 
 export default function Home() {
   const router = useRouter();
@@ -23,10 +24,19 @@ export default function Home() {
   async function handleJoinRoom(event: FormEvent) {
     event.preventDefault()
 
-    // if (roomCode === '') {
-    //   alert('')
-    //   return
-    // }
+    if (roomCode === '') {
+      toast('Preencha o código da sala', {
+        style: {
+          height: '60px',
+          borderRadius: 8,
+          background: '#835afd',
+          padding: '0 32px',
+          color: '#fff',
+          fontWeight: 500
+        }
+      })
+      return
+    }
 
     try {
       const roomRef = await database.ref(`rooms/${roomCode}`).get()
@@ -61,7 +71,7 @@ export default function Home() {
 
       router.push(`/rooms/${roomCode}`)
     } catch (error) {
-      toast.error('Erro', {
+      toast.error('Ocorreu um erro', {
         style: {
           height: '50px',
           borderRadius: 8,
@@ -117,7 +127,7 @@ export default function Home() {
             </>
           ) : (
             <>
-              <br />
+              <h2>Entrar em uma sala</h2>
               <form onSubmit={handleJoinRoom}>
                 <input
                   type="text"
@@ -132,6 +142,11 @@ export default function Home() {
                   disabled={false}
                 >Entrar na sala</Button>
               </form>
+              <p>Quer criar uma sala ?
+                <Link href="/rooms/new">
+                  <a> Clique aqui</a>
+                </Link>
+              </p>
             </>
           )}
         </div>

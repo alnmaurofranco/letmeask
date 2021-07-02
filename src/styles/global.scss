@@ -17,3 +17,8 @@ button,
 textarea {
   font: 400 16px 'Roboto', sans-serif;
 }
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: 1px auto #835afd;
+}
