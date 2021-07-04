@@ -41,20 +41,20 @@ A LetMeAsk é uma plataforma onde os usuários criam salas de eventos, audiênci
 
 - Clone o repositório
 ```bash
-$ git clone https://github.com/alnmaurofranco/letmeask
+git clone https://github.com/alnmaurofranco/letmeask
 ```
 - Acesse a pasta do projeto
 ```bash
-$ cd letmeask
+cd letmeask
 ```
 - Instale as dependências do projeto
 ```bash
 # use yarn ou npm para instalar as dependências
-$ yarn install
+yarn install
 ```
 - Inicie o projeto
 ```bash
-$ yarn dev
+yarn dev
 ```
 
 E pronto o projeto estára rodando e pode ser acessado em [`localhost:3000`](http://localhost:3000)
