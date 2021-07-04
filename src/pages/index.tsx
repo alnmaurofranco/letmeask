@@ -24,8 +24,8 @@ export default function Home() {
   async function handleJoinRoom(event: FormEvent) {
     event.preventDefault()
 
-    if (roomCode === '') {
-      toast('Preencha o código da sala', {
+    if (roomCode.trim() === '') {
+      toast.error('Preencha o código da sala', {
         style: {
           height: '60px',
           borderRadius: 8,
@@ -42,7 +42,7 @@ export default function Home() {
       const roomRef = await database.ref(`rooms/${roomCode}`).get()
 
       if (!roomRef.exists()) {
-        toast('Sala não existe', {
+        toast.error('Sala não existe', {
           style: {
             height: '50px',
             borderRadius: 8,
@@ -56,7 +56,7 @@ export default function Home() {
       }
 
       if (roomRef.val().endedAt) {
-        toast('Sala está fechada!', {
+        toast.error('Sala está fechada!', {
           style: {
             height: '50px',
             borderRadius: 8,

@@ -11,6 +11,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 import { Question } from '../../components/Question';
 import { useRoom } from '../../hooks/useRoom';
+import { toast } from 'react-hot-toast';
 
 type TRoomQuery = {
   id: string;
@@ -32,7 +33,16 @@ export default function Room() {
     e.preventDefault()
 
     if (newQuestion.trim() === '')
-      return
+      return toast.error('Preencha o campo da pergunta', {
+        style: {
+          height: '60px',
+          borderRadius: 8,
+          background: '#835afd',
+          padding: '0 32px',
+          color: '#fff',
+          fontWeight: 500
+        }
+      })
 
     if (!user) {
       throw new Error('You must be logged in.')

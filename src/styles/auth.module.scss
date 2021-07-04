@@ -13,6 +13,10 @@
     flex-direction: column;
     justify-content: center;
     padding: 120px 80px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   img {
