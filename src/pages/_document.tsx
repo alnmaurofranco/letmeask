@@ -38,6 +38,29 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="/assets/images/favicon.ico" />
           <link rel="mask-icon" color="#5bbad5" href="/assets/images/safari-pinned-tab.svg" />
           <link rel="manifest" href="/manifest.json" />
+
+          {/* Redes sociais */}
+          <meta property="og:url" content="https://letmeask-e1f94.web.app/" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="Letmeask" />
+          <meta property="og:site_name" content="Letmeask" />
+          <meta property="og:description" content="Crie sala de perguntas e respostas ao vivo" />
+          <meta property="og:image" content="https://letmeask-e1f94.web.app/assets/images/letmeask-rede.jpg" />
+          <meta property="og:image:secure_url" content="https://letmeask-e1f94.web.app/assets/images/letmeask-rede.jpg" />
+          <meta property="og:image:alt" content="Thumbnail" />
+          <meta property="og:image:type" content="image/jpg" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+
+          <meta name="twitter:title" content="Letmeask" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="Letmeask" />
+          <meta name="twitter:creator" content="@aln_maurofranco" />
+          <meta name="twitter:image" content="https://letmeask-e1f94.web.app/assets/images/letmeask-rede.jpg" />
+          <meta name="twitter:image:src" content="https://letmeask-e1f94.web.app/assets/images/letmeask-rede.jpg" />
+          <meta name="twitter:image:alt" content="Thumbnail" />
+          <meta name="twitter:image:width" content="1200" />
+          <meta name="twitter:image:height" content="620" />
         </Head>
         <body>
           <Main />

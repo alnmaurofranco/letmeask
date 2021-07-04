@@ -40,16 +40,30 @@ A LetMeAsk é uma plataforma onde os usuários criam salas de eventos, audiênci
 ## 👨🏼‍💻 Como executar
 
 - Clone o repositório
-- Instale as dependências com `yarn install`
-- Inicie o servidor com `yarn dev`
+```bash
+$ git clone https://github.com/alnmaurofranco/letmeask
+```
+- Acesse a pasta do projeto
+```bash
+$ cd letmeask
+```
+- Instale as dependências do projeto
+```bash
+# use yarn ou npm para instalar as dependências
+$ yarn install
+```
+- Inicie o projeto
+```bash
+$ yarn dev
+```
 
-E pronto a aplicação estára rodando e pode ser acessada em [`localhost:3000`](http://localhost:3000)
+E pronto o projeto estára rodando e pode ser acessado em [`localhost:3000`](http://localhost:3000)
 
 ## 🌟 Desafios
 
 A seguir um to-do com os desafios para serem realizados nesse projeto.
 
-- [ ] PWA
+- [x] PWA
 - [ ] Responsividade
 
 ---
